@@ -9,7 +9,8 @@ name:{
 },
 email:{
     type:String,
-    required:true
+    required:true,
+    unique:true
 },
 password:{
     type:String,
@@ -21,4 +22,7 @@ date:{
 }
     });
 
-  module.exports = mongoose.model('User',UserSchema)
+    const User = mongoose.model('user', UserSchema);
+  module.exports = User;
+
+  module.exports = mongoose.model('User',UserSchema);
