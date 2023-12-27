@@ -1,0 +1,6 @@
+import pandas as pd
+import datetime
+date1 = "15Dec1989"
+y=pd.to_datetime(date1, format='%d%b%Y')
+result = y.strftime("%A, %d %b %y")
+print(result)
