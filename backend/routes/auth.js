@@ -60,16 +60,16 @@ router.post('/createUser',[
 })
 
 
-// ROUTE1.: Create a user using: POST: "/api/auth". Doesn't require Auth
-router.get('/', (req, res)=>{
+// // Create a user using: POST: "/api/auth". Doesn't require Auth
+// router.get('/', (req, res)=>{
 
-  console.log(req.body)
-  const user = User(req.body)
-  user.save()
-  console.log(user)
-  res.send(req.body);
-  // res.send("hello")
-})
+//   console.log(req.body)
+//   const user = User(req.body)
+//   user.save()
+//   console.log(user)
+//   res.send(req.body);
+//   // res.send("hello")
+// })
 
 // ROUTE2.: Autheticate the user using: POST "/api/auth/login". Login required
 router.post('/login',[
