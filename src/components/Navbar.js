@@ -8,7 +8,7 @@ const Navbars = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-      <Link class="navbar-brand" href="/">iNotebook</Link>
+      <Link class="navbar-brand" to="/">iNotebook</Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
