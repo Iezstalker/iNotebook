@@ -5,6 +5,7 @@ import About from "./components/About";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoPage from "./components/NoPage";
 import NoteState from "./context/Notes/NoteState";
+import { Alert } from "./components/Alert";
 
 function App() {
   return (
@@ -13,13 +14,14 @@ function App() {
         <NoteState>
           <BrowserRouter>
             <Navbar />
-            {/* <div className="container"> */}
+            <Alert message= "Hi!!"/>
+            <div className="container">
               <Routes>
-                <Route index element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="About" element={<About />} />
                 <Route path="*" element={<NoPage />} />
               </Routes>
-            {/* </div> */}
+            </div>
           </BrowserRouter>
         </NoteState>
       </>
