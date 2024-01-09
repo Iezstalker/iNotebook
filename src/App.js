@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoPage from "./components/NoPage";
 import NoteState from "./context/Notes/NoteState";
 import { Alert } from "./components/Alert";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="About" element={<About />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="*" element={<NoPage />} />
               </Routes>
             </div>
