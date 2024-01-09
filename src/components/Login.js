@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import  {useNavigate} from 'react-router-dom';
 
 const Login = (props) => {
-    // const host = 'http://localhost:108'
+    const host = 'http://localhost:108'
 
     const [credentials, setCredentials] = useState({ email: "", password: "" })
 
@@ -11,8 +11,8 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // const url = `${host}/api/auth/login`
-        const response = await fetch('http://localhost:108/api/auth/login', {
+        const url = `${host}/api/auth/login`
+        const response = await fetch(url, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
 
             headers: {
