@@ -13,7 +13,7 @@ const NoteState = (props) => {
     const url = `${host}/api/notes/fetchallnotes/`
     const response = await fetch(url, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
-    
+
       headers: {
         "Content-Type": "application/json",
         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU4YzQxNzIxYTJhYTJhNDVkZTYyMDZhIn0sImlhdCI6MTcwMzkxOTM3NH0.X9q5qkAynt13xWFVMsXVVLnvG0VBgQKJBrnEJ4-k20g"
@@ -31,20 +31,20 @@ const NoteState = (props) => {
     const url = `${host}/api/notes/addnote/`
     const response = await fetch(url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
-    
+
       headers: {
         "Content-Type": "application/json",
         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU4YzQxNzIxYTJhYTJhNDVkZTYyMDZhIn0sImlhdCI6MTcwMzkxOTM3NH0.X9q5qkAynt13xWFVMsXVVLnvG0VBgQKJBrnEJ4-k20g"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-       body: JSON.stringify({title, description, tag}), // body {data} type must match "Content-Type" header
+      body: JSON.stringify({ title, description, tag }), // body {data} type must match "Content-Type" header
     });
     const json = await response.json(); // parses JSON response into native JavaScript objects
     console.log(json)
 
     console.log("Adding a new note")
     const note = {
-      "_id": "659aab14ad113c9eb8a89e68fd",
+      "_id": "659aab14ad113c9eb8a89e68",
       "user": "658c41721a2aa2a45de6206a",
       "title": title,
       "description": description,
@@ -61,18 +61,18 @@ const NoteState = (props) => {
     const url = `${host}/api/notes/deleteNote/${id}`
     const response = await fetch(url, {
       method: "DELETE", // *GET, POST, PUT, DELETE, etc.
-    
+
       headers: {
         "Content-Type": "application/json",
         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU4YzQxNzIxYTJhYTJhNDVkZTYyMDZhIn0sImlhdCI6MTcwMzkxOTM3NH0.X9q5qkAynt13xWFVMsXVVLnvG0VBgQKJBrnEJ4-k20g"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
-    const json = response.json()
+    const json = await response.json()
     console.log(json)
 
     console.log("Deleting the node with id " + id);
-    const newNotes = notes.filter((note)=>{return note._id!==id})
+    const newNotes = notes.filter((note) => { return note._id !== id })
     setNotes(newNotes)
   }
 
@@ -81,26 +81,31 @@ const NoteState = (props) => {
     // API Call
     const url = `${host}/api/notes/updateNote/${id}`
     const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-    
+      method: "PUT", // *GET, POST, PUT, DELETE, etc.
+
       headers: {
         "Content-Type": "application/json",
         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU4YzQxNzIxYTJhYTJhNDVkZTYyMDZhIn0sImlhdCI6MTcwMzkxOTM3NH0.X9q5qkAynt13xWFVMsXVVLnvG0VBgQKJBrnEJ4-k20g"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-       body: JSON.stringify({title, description, tag}), // body {data} type must match "Content-Type" header
+      body: JSON.stringify({ title, description, tag }), // body {data} type must match "Content-Type" header
     });
     const json = await response.json(); // parses JSON response into native JavaScript objects
+    console.log(json)
+
+    let newNotes = JSON.parse(JSON.stringify(notes))
 
     // Logic to edit in client
-    for (let index = 0; index < notes.length; index++) {
+    for (let index = 0; index < newNotes.length; index++) {
       const element = notes[index];
-      if (element._id === id){
-        element.title = title;
-        element.description = description; 
-         element.tag = tag;
+      if (element._id === id) {
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
+        break;
       }
     }
+    setNotes(newNotes)
   }
   return (
     <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
