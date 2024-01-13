@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import  {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
     const host = 'http://localhost:108'
@@ -24,13 +24,13 @@ const Login = (props) => {
         const json = await response.json();
         console.log(json)
 
-        if(json.success){
+        if (json.success) {
             //Save the auth token & redirect
-            localStorage.setItem('token', json.authtoken);
-            navigate("/");
+            localStorage.setItem('token', json.authToken);
             props.showAlert("!!Logged in Successfully!!", "success")
+            navigate("/");
         }
-        else{
+        else {
             props.showAlert("!Invalid Credentials!", "danger")
         }
     }
@@ -41,7 +41,8 @@ const Login = (props) => {
     }
 
     return (
-        <div>
+        <div className='container mt-2'>
+            <h2>Login To Your Account</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>

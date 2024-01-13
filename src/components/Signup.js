@@ -26,14 +26,13 @@ const Signup = (props) => {
     });
     const json = await response.json();
     console.log(json)
-    if(json.success){
-
+    if (json.success) {
       //Save the auth token & redirect
-      localStorage.setItem('token', json.authtoken);
-      navigate("/");
+      localStorage.setItem('token', json.authToken);
       props.showAlert("!!Account Created Successfully!!", "success")
+      navigate("/");
     }
-    else{
+    else {
       props.showAlert("!Account Already Exists!", "danger")
     }
   }
@@ -41,7 +40,8 @@ const Signup = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   }
   return (
-    <div className='container'>
+    <div className='container mt-2'>
+      <h2>Create Your Account To Use iNotebook</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name</label>
@@ -56,12 +56,12 @@ const Signup = (props) => {
 
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password</label>
-          <input type="password" className="form-control" id="password" name='password' onChange={onChange} minLength={5} required/>
+          <input type="password" className="form-control" id="password" name='password' onChange={onChange} minLength={5} required />
         </div>
 
         <div className="mb-3">
           <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-          <input type="password" className="form-control" id="cpassword" name='cpassword' onChange={onChange} minLength={5}required />
+          <input type="password" className="form-control" id="cpassword" name='cpassword' onChange={onChange} minLength={5} required />
         </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>
